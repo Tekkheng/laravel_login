@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('auths', function (Blueprint $table) {
-            $table->id();
+        Schema::create('master_truck', function (Blueprint $table) {
+            $table->increments('no');
+            $table->string('plat_no');
+            $table->unsignedInteger('tipe_truck');
+            $table->foreign('tipe_truck')->references('no')->on('master_tipe_truck');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('auths');
+        Schema::dropIfExists('master_truck');
     }
 };

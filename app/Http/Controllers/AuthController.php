@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -15,23 +16,35 @@ class AuthController extends Controller
      */
     public function index()
     {
-        $data = DB::connection("mysql")->table('users')->select('id', 'nama', 'email','password')->get();
-        return response()->json($data,200);
+        $data = DB::connection("mysql")->table('users')->select('id', 'nama', 'email', 'password')->get();
+        return response()->json($data, 200);
     }
 
     public function login(Request $req)
     {
         $user = Users::where('email', $req->email)->first();
+
         if ($user && Hash::check($req->password, $user->password)) {
-            $token = $user->createToken('Personal Token')->plainTextToken;
-            $res = [
-                'success' => true,
-                'status' => 200,
-                'token' => $token,
-                'message' => 'Login Sukses!',
-                'data' => $user
-            ];
-            return response()->json($res);
+            // JWTAuth
+            $token = JWTAuth::attempt([
+                "email" => $req->email,
+                "password" => $req->password
+            ]);
+
+            if (!empty($token)) {
+                $res = [
+                    'success' => true,
+                    'status' => 200,
+                    'token' => $token,
+                    'message' => 'User logged in succcessfully',
+                    'data' => $user
+                ];
+                return response()->json($res);
+            }
+            return response()->json([
+                "status" => false,
+                "message" => "Invalid details"
+            ]);
         } elseif (!$user) {
             $res = [
                 'success' => false,
@@ -50,14 +63,14 @@ class AuthController extends Controller
     }
 
     public function register(Request $req)
-    {   
+    {
         try {
             $validasi = Validator::make(
                 $req->all(),
                 [
                     'nama' => 'required|string|max:255',
                     'email' => 'required|email|unique:users',
-                    'password' => 'required|string|min:8',
+                    'password' => 'required|confirmed',
                 ],
             );
             // return $req;
@@ -73,37 +86,55 @@ class AuthController extends Controller
 
             $response = [
                 'status' => 200,
-                'message' => 'register success',
+                'message' => 'User registered successfully',
                 'data' => $data,
             ];
             return response()->json($response);
         } catch (\Throwable $th) {
-            $response = ['status' => 500, 'message' => $th];
+            $response = ['status' => 500, 'message' => $th->getMessage()];
+            return response()->json($response, 500);
         }
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function profile()
     {
-        //
+        $userdata = auth()->user();
+
+        return response()->json([
+            "status" => true,
+            "message" => "Profile data",
+            "data" => $userdata
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function refreshToken()
     {
-        //
+        $newToken = auth()->refresh();
+
+        return response()->json([
+            "status" => true,
+            "message" => "New access token",
+            "token" => $newToken
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Users $user)
+    public function logout()
     {
-        //
+        auth()->logout();
+
+        return response()->json([
+            "status" => true,
+            "message" => "User logged out successfully"
+        ]);
     }
 
     /**
