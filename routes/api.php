@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CrudController;
+use App\Http\Controllers\TruckController;
+use App\Http\Controllers\TruckScheduleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,9 +36,16 @@ Route::group([
     Route::get("logout", [AuthController::class, "logout"]);
 });
 
-Route::get("data", [CrudController::class, "index"]);
-Route::get("data/{id}", [CrudController::class, "show"]);
-Route::post("data", [CrudController::class, "create"]);
+Route::get("data", [TruckController::class, "index"]);
+Route::get("data/{id}", [TruckController::class, "show"]);
+Route::post("data", [TruckController::class, "create"]);
+Route::put("data/{id}", [TruckController::class, "update"]);
+Route::delete("data/{id}", [TruckController::class, "destroy"]);
 
-Route::put("data/{id}", [CrudController::class, "update"]);
-Route::delete("data/{id}", [CrudController::class, "destroy"]);
+
+
+Route::get("truck_schedule", [TruckScheduleController::class, "index"]);
+Route::get("truck_schedule/{id}", [TruckScheduleController::class, "show"]);
+Route::post("truck_schedule", [TruckScheduleController::class, "create"]);
+Route::put("truck_schedule/{id}", [TruckScheduleController::class, "update"]);
+Route::delete("truck_schedule/{id}", [TruckScheduleController::class, "destroy"]);
