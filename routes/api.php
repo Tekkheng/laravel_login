@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\TruckController;
 use App\Http\Controllers\TruckScheduleController;
 use Illuminate\Http\Request;
@@ -49,3 +50,5 @@ Route::get("truck_schedule/{id}", [TruckScheduleController::class, "show"]);
 Route::post("truck_schedule", [TruckScheduleController::class, "create"]);
 Route::put("truck_schedule/{id}", [TruckScheduleController::class, "update"]);
 Route::delete("truck_schedule/{id}", [TruckScheduleController::class, "destroy"]);
+
+Route::get("generate-pdf/{id}", [PdfController::class, "generate_pdf"]);
