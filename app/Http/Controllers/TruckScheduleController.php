@@ -28,18 +28,25 @@ class TruckScheduleController extends Controller
                 $req->all(),
                 [
                     'plat_no' => 'required|string|max:255',
+                    'tipe_truck' => 'required|string|max:255',
                     'tgl_berangkat' => 'required|string|max:255',
                     'tgl_sampai' => 'required|string|max:255',
                 ],
             );
             if ($validasi->fails()) {
-                return response()->json($validasi->errors(), 422);
+                $res = [
+                    'success' => false,
+                    'status' => 422,
+                    'message' => $validasi->errors(),
+                ];
+                return response()->json($res, 422);
             }
             // if ($validasi->fails()) {
             //     return response()->json('field Plat No dan tipe truck harus di isi dengan benar!', 422);
             // }
             $data = new TruckSchedule();
             $data->plat_no = $req->plat_no;
+            $data->tipe_truck = $req->tipe_truck;
             $data->tgl_berangkat = $req->tgl_berangkat;
             $data->tgl_sampai = $req->tgl_sampai;
 
@@ -100,6 +107,7 @@ class TruckScheduleController extends Controller
                 return response()->json("data pada id=$id, tidak ada!", 404);
             }
             $data->plat_no = $req->plat_no;
+            $data->tipe_truck = $req->tipe_truck;
             $data->tgl_berangkat = $req->tgl_berangkat;
             $data->tgl_sampai = $req->tgl_sampai;
 

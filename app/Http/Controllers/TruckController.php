@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Truck;
+use App\Models\TruckType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,9 @@ class TruckController extends Controller
     public function index()
     {
         // $con = DB::connection('mysql')->table('master_truck')->get();
-        $conn = Truck::get();
+
+        // $conn = Truck::get();
+        $conn = Truck::with('truckType')->get();
         return response($conn, 200);
     }
 

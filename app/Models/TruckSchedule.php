@@ -10,5 +10,5 @@ class TruckSchedule extends Model
     use HasFactory;
 
     // protected $table = 'truck_schedules';
-    protected $fillable = ['plat_no','tgl_berangkat','tgl_sampai'];
+    protected $fillable = ['plat_no','tipe_truck','tgl_berangkat','tgl_sampai'];
 }

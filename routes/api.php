@@ -34,7 +34,7 @@ Route::group([
 
     Route::get("profile", [AuthController::class, "profile"]);
     Route::get("refresh", [AuthController::class, "refreshToken"]);
-    Route::get("logout", [AuthController::class, "logout"]);
+    Route::delete("logout", [AuthController::class, "logout"]);
 });
 
 Route::get("data", [TruckController::class, "index"]);
@@ -42,8 +42,6 @@ Route::get("data/{id}", [TruckController::class, "show"]);
 Route::post("data", [TruckController::class, "create"]);
 Route::put("data/{id}", [TruckController::class, "update"]);
 Route::delete("data/{id}", [TruckController::class, "destroy"]);
-
-
 
 Route::get("truck_schedule", [TruckScheduleController::class, "index"]);
 Route::get("truck_schedule/{id}", [TruckScheduleController::class, "show"]);

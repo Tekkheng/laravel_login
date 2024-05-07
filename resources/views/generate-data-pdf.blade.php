@@ -13,6 +13,7 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>Tipe Truck</th>
                 <th>Plat No</th>
                 <th>Jadwal Berangkat</th>
                 <th>Jadwal Sampai</th>
@@ -21,6 +22,7 @@
         <tbody>
             <tr>
                 <td>{{$data->id}}</td>
+                <td>{{$data->tipe_truck}}</td>
                 <td>{{$data->plat_no}}</td>
                 <td>{{$data->tgl_berangkat}}</td>
                 <td>{{$data->tgl_sampai}}</td>

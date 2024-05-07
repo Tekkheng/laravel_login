@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\TruckType;
 
 class Truck extends Model
 {
@@ -13,4 +14,9 @@ class Truck extends Model
     protected $primaryKey = 'no';
 
     protected $fillable = ['plat_no', 'tipe_truck'];
+
+    public function truckType()
+    {
+        return $this->belongsTo(TruckType::class, 'tipe_truck', 'no');
+    }
 }

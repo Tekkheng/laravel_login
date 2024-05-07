@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('truck_schedules', function (Blueprint $table) {
             $table->id();
             $table->string('plat_no');
+            $table->string('tipe_truck');
             $table->date('tgl_berangkat');
             $table->date('tgl_sampai');
             $table->timestamps();
