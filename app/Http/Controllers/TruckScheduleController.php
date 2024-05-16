@@ -27,6 +27,9 @@ class TruckScheduleController extends Controller
             $validasi = Validator::make(
                 $req->all(),
                 [
+                    // 'nama_driver' => 'required|string|max:255',
+                    // 'tipe_driver_truck' => 'required|string|max:255',
+
                     'plat_no' => 'required|string|max:255',
                     'tipe_truck' => 'required|string|max:255',
                     'tgl_berangkat' => 'required|string|max:255',

@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\TruckController;
 use App\Http\Controllers\TruckScheduleController;
+use App\Http\Controllers\TypeTruckController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -48,5 +51,20 @@ Route::get("truck_schedule/{id}", [TruckScheduleController::class, "show"]);
 Route::post("truck_schedule", [TruckScheduleController::class, "create"]);
 Route::put("truck_schedule/{id}", [TruckScheduleController::class, "update"]);
 Route::delete("truck_schedule/{id}", [TruckScheduleController::class, "destroy"]);
+
+Route::get("delivery_schedule", [DeliveryController::class, "index"]);
+Route::get("delivery_schedule/{id}", [DeliveryController::class, "show"]);
+Route::post("delivery_schedule", [DeliveryController::class, "create"]);
+Route::put("delivery_schedule/{id}", [DeliveryController::class, "update"]);
+Route::delete("delivery_schedule/{id}", [DeliveryController::class, "destroy"]);
+
+Route::get("drivers", [DriverController::class, "index"]);
+Route::get("drivers/{id}", [DriverController::class, "show"]);
+Route::post("drivers", [DriverController::class, "create"]);
+Route::put("driversStatus/{id}", [DriverController::class, "updateStatus"]);
+Route::put("drivers/{id}", [DriverController::class, "update"]);
+Route::delete("drivers/{id}", [DriverController::class, "destroy"]);
+
+Route::get("typeTruck", [TypeTruckController::class, "index"]);
 
 Route::get("generate-pdf/{id}", [PdfController::class, "generate_pdf"]);

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Truck;
+use App\Models\Driver;
 
 class TruckType extends Model
 {
@@ -16,5 +17,9 @@ class TruckType extends Model
     public function trucks()
     {
         return $this->hasMany(Truck::class);
+    }
+    public function drivers()
+    {
+        return $this->hasMany(Driver::class);
     }
 }
