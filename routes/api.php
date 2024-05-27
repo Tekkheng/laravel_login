@@ -169,6 +169,3 @@ Route::group([
 
 //     Route::get("generate-pdf/{id}", [PdfController::class, "generate_pdf"]);
 // });
-
-
-// Hello World //
