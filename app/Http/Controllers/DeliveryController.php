@@ -9,7 +9,7 @@ class DeliveryController extends Controller
 {
     public function index()
     {
-        $data = DeliverySchedule::get();
+        $data = DeliverySchedule::with('platNo')->get();
         return response()->json($data, 200);
     }
 

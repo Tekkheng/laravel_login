@@ -19,4 +19,9 @@ class Truck extends Model
     {
         return $this->belongsTo(TruckType::class, 'tipe_truck', 'no');
     }
+
+    public function deliverchedules()
+    {
+        return $this->hasMany(DeliverySchedule::class);
+    }
 }

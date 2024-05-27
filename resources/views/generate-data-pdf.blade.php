@@ -13,6 +13,7 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>Nama Driver</th>
                 <th>Tipe Truck</th>
                 <th>Plat No</th>
                 <th>Jadwal Berangkat</th>
@@ -21,11 +22,12 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{$data->id}}</td>
-                <td>{{$data->tipe_truck}}</td>
-                <td>{{$data->plat_no}}</td>
-                <td>{{$data->tgl_berangkat}}</td>
-                <td>{{$data->tgl_sampai}}</td>
+                <td>{{ $data->id }}</td>
+                <td>{{ $data->nama_driver }}</td>
+                <td>{{ $data->truckType->tipe_truck }}</td>
+                <td>{{ $data->plat_no }}</td>
+                <td>{{ $data->tgl_berangkat }}</td>
+                <td>{{ $data->tgl_sampai }}</td>
             </tr>
         </tbody>
     </table>

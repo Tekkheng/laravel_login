@@ -14,7 +14,8 @@ class TruckScheduleController extends Controller
      */
     public function index()
     {
-        $data = TruckSchedule::get();
+        $data = TruckSchedule::with(['driverName','truckType'])->get();
+        // $data = TruckSchedule::with('driverName')->get();
         return response()->json($data, 200);
     }
 
@@ -27,11 +28,14 @@ class TruckScheduleController extends Controller
             $validasi = Validator::make(
                 $req->all(),
                 [
-                    // 'nama_driver' => 'required|string|max:255',
-                    // 'tipe_driver_truck' => 'required|string|max:255',
+                    // 'plat_no' => 'required|string|max:255',
+                    // 'tipe_truck' => 'required|string|max:255',
+                    // 'tgl_berangkat' => 'required|string|max:255',
+                    // 'tgl_sampai' => 'required|string|max:255',
 
+                    'nama_driver' => 'required|integer|max:255',
                     'plat_no' => 'required|string|max:255',
-                    'tipe_truck' => 'required|string|max:255',
+                    'tipe_truck' => 'required|integer|max:255',
                     'tgl_berangkat' => 'required|string|max:255',
                     'tgl_sampai' => 'required|string|max:255',
                 ],
@@ -48,6 +52,7 @@ class TruckScheduleController extends Controller
             //     return response()->json('field Plat No dan tipe truck harus di isi dengan benar!', 422);
             // }
             $data = new TruckSchedule();
+            $data->nama_driver = $req->nama_driver;
             $data->plat_no = $req->plat_no;
             $data->tipe_truck = $req->tipe_truck;
             $data->tgl_berangkat = $req->tgl_berangkat;
@@ -96,7 +101,13 @@ class TruckScheduleController extends Controller
             $validasi = Validator::make(
                 $req->all(),
                 [
+                    // 'plat_no' => 'required|string|max:255',
+                    // 'tgl_berangkat' => 'required|string|max:255',
+                    // 'tgl_sampai' => 'required|string|max:255',
+
+                    'nama_driver' => 'required|integer|max:255',
                     'plat_no' => 'required|string|max:255',
+                    'tipe_truck' => 'required|integer|max:255',
                     'tgl_berangkat' => 'required|string|max:255',
                     'tgl_sampai' => 'required|string|max:255',
                 ],
@@ -109,6 +120,7 @@ class TruckScheduleController extends Controller
             if ($data == null) {
                 return response()->json("data pada id=$id, tidak ada!", 404);
             }
+            $data->nama_driver = $req->nama_driver;
             $data->plat_no = $req->plat_no;
             $data->tipe_truck = $req->tipe_truck;
             $data->tgl_berangkat = $req->tgl_berangkat;

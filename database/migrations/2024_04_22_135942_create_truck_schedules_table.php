@@ -12,9 +12,28 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('truck_schedules', function (Blueprint $table) {
+            // $table->id();
+            // $table->string('plat_no');
+            // $table->string('tipe_truck');
+            // $table->date('tgl_berangkat');
+            // $table->date('tgl_sampai');
+            // $table->timestamps();
+
+            // $table->id();
+            // $table->string('nama_driver',255);
+            // $table->string('plat_no');
+            // $table->unsignedInteger('tipe_truck');
+            // $table->foreign('tipe_truck')->references('no')->on('master_tipe_truck');
+            // $table->date('tgl_berangkat');
+            // $table->date('tgl_sampai');
+            // $table->timestamps();
+
             $table->id();
+            $table->bigInteger('nama_driver')->unsigned();
+            $table->foreign('nama_driver')->references('id')->on('drivers');
             $table->string('plat_no');
-            $table->string('tipe_truck');
+            $table->unsignedInteger('tipe_truck');
+            $table->foreign('tipe_truck')->references('no')->on('master_tipe_truck');
             $table->date('tgl_berangkat');
             $table->date('tgl_sampai');
             $table->timestamps();

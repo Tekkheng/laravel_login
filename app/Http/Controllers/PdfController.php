@@ -9,7 +9,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class PdfController extends Controller
 {
     public function generate_pdf($id){
-        $item = TruckSchedule::find($id);
+        $item = TruckSchedule::with('truckType')->find($id);
         $template = [
             'title' => 'TRUCK SCHEDULE',
             'date' => date('m/d/Y'),

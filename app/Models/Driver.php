@@ -19,4 +19,10 @@ class Driver extends Model
     {
         return $this->belongsTo(TruckType::class, 'tipe_driver_truck', 'no');
     }
+
+    // ***
+    public function truckschedules()
+    {
+        return $this->hasMany(TruckSchedule::class);
+    }
 }

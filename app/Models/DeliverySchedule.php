@@ -11,4 +11,9 @@ class DeliverySchedule extends Model
 
     protected $table = 'delivery_schedules';
     protected $fillable = ['no_delivery','plat_no','tgl_berangkat','tgl_sampai'];
+
+    public function platNo()
+    {
+        return $this->belongsTo(Truck::class, 'plat_no', 'no');
+    }
 }

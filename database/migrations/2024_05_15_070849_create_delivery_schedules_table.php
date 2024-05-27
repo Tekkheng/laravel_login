@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('delivery_schedules', function (Blueprint $table) {
             $table->id();
             $table->string('no_delivery')->unique();
-            $table->integer('plat_no');
+            $table->unsignedInteger('plat_no');
             $table->date('tgl_berangkat');
             $table->date('tgl_sampai');
             $table->timestamps();
