@@ -135,8 +135,6 @@ Route::group([
 });
 
 
-
-
 // Route::middleware(['loggedin'])->group(function () {
 //     Route::get('/login', [AuthController::class, 'index'])->withoutMiddleware(['loggedin']);
 //     Route::post("register", [AuthController::class, "register"])->withoutMiddleware(['loggedin']);
@@ -171,3 +169,6 @@ Route::group([
 
 //     Route::get("generate-pdf/{id}", [PdfController::class, "generate_pdf"]);
 // });
+
+
+// Hello World //
