@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\TruckController;
 use App\Http\Controllers\TruckScheduleController;
@@ -132,6 +133,13 @@ Route::group([
     Route::get("typeTruck", [TypeTruckController::class, "index"]);
     
     Route::get("generate-pdf/{id}", [PdfController::class, "generate_pdf"]);
+
+
+    Route::get("mail/{id}", [MailController::class, "schedule_pdf"]);
+    
+    Route::post('send-email', [MailController::class, 'send_email']);
+
+    // Route::get('/download-pdf/{id}', [MailController::class, 'downloadPdf'])->name('download-pdf');
 });
 
 

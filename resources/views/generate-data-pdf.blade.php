@@ -23,7 +23,7 @@
         <tbody>
             <tr>
                 <td>{{ $data->id }}</td>
-                <td>{{ $data->nama_driver }}</td>
+                <td>{{ $data->driverName->nama_driver }}</td>
                 <td>{{ $data->truckType->tipe_truck }}</td>
                 <td>{{ $data->plat_no }}</td>
                 <td>{{ $data->tgl_berangkat }}</td>
