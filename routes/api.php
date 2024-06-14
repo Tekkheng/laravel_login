@@ -71,6 +71,6 @@ Route::group([
     Route::get("mail/{id}", [MailController::class, "schedule_pdf"]);
     
     Route::post('send-email', [MailController::class, 'send_email']);
-//haha
+
     // Route::get('/download-pdf/{id}', [MailController::class, 'downloadPdf'])->name('download-pdf');
 });
